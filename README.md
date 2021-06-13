@@ -35,7 +35,7 @@ For now, we will create the network first and attach the MySQL container at star
 ```  
 2.  Start a MySQL container and attach it to the network. We're also going to define a few environment variables that the database will use to initialize the database (see the "Environment Variables" section in the [MySQL Docker Hub listing](https://hub.docker.com/_/mysql/))  
 
-```sh
+```shell
     docker run -d \
     --network todo-app --network-alias mysql \
     -v todo-mysql-data:/var/lib/mysql \
