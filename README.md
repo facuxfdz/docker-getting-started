@@ -24,7 +24,7 @@ into depth, it covers the following topics:
 
 ## Container networking  
 Remember that containers, by default, run in isolation and don't know anything about other processes or containers on the same machine. So, how do we allow one container to talk to another? The answer is **networking**. Now, you don't have to be a network engineer. Simply remember this rule...  
-> <span style="color: #147ac8"> Note </span>  
+> **Note**  
 If two containers are on the same network, the can talk to each other. If they aren't, the can't
 
 ## Start MySQL  
@@ -51,7 +51,7 @@ For now, we will create the network first and attach the MySQL container at star
 
 You'll also see we specified the ```--network-alias``` flag. We'll come back to that in just a moment. 
 
-> <span style="color: #147ac8"> Tip </span>  
+> **Tip**  
 You'll notice we're using a volume named ```todo-mysql-data``` here and mounting it at ```var/lib/mysql```, which is where MySQL stores its data. However, we never ran a ```docker volume create``` command. Docker recognizes we want to use a named volume and creates one automatically for us.  
 
 3.  To confirm we have the database up and running, connect to the database and verify it connects.  
@@ -124,7 +124,7 @@ The todo app supports the setting of a few environment variables to specify MySQ
 *   ```MYSQL_PASSWORD``` - the password to use for the connection  
 *   ```MYSQL_DB``` - the database to use once connected  
 
-> <span style="color:#147ac8">Setting connection Settings via Env Vars</span>  
+> **Setting connection Settings via Env Vars**  
 While using env vars to set connection settings is generally ok for development, it is **HIGHLY DISCOURAGED** when running applications in production. Diogo Monica, the former lead of security at Docker, [wrote a fantastic blog post](https://diogomonica.com/2017/03/27/why-you-shouldnt-use-env-variables-for-secret-data/) explining why.  
 A more secure mechanism is to use the secret support provided by your container orchestration framework. In most cases, these secrets are mounted as files in the running container. You'll see many apps (including the MySQL image and the todo app) also support env vars with ```_FILE``` suffix to point to a file containing the variable.  
 As an example, setting the ```MYSQL_PASSWORD_FILE``` var will cause the app to use the contents of the referenced file as the connection password. Docker doesn't do anything to support these env vars. Your app will need to know to look for the variable and get the file contents.  
@@ -439,7 +439,7 @@ If you don't already, you'll see output that looks like this...
 
 The service name is displayed at the beginning of the line (often colored) to help distinguish messages. If you want to view the logs for a specific service, you can add the service name to the end of the logs command (for example, ```docker-compose logs -f app```).  
 
-> <span style="color:#147ac8">Tip: Waiting for the DB before starting the app</span>  
+> **Tip: Waiting for the DB before starting the app**  
 When the app is starting up, it actually sits and waits for MySQL to be up and ready before trying to connect to it. Docker doesn't have any built-in support to wait for another container to be fully up, running, and ready before starting another container. For Node-based projects, you can use the [wait-port](https://github.com/dwmkerr/wait-port) dependency. Similar projects exist for other languages/frameworks.  
 
 4.  At this point, you should be able to open your app and see it running. And hey! We're down to a single command!  
@@ -447,7 +447,7 @@ When the app is starting up, it actually sits and waits for MySQL to be up and r
 ## Tear it all down  
 When you're ready to tear it all down, simply run ```docker-compose down```. The containers will stop and the network will be removed.  
 
-> <strong>Warning</strong>
+> **Warning**
   Removing Volumes  
   By default, named volumes in your compose file are NOT removed when running ```docker-compose down```.   
   If you want to remove the volumes, you will need to add the ```--volumes``` flag.
