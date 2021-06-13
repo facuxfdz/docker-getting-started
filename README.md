@@ -14,29 +14,38 @@ into depth, it covers the following topics:
 - Using image layer caching to speed up builds and reduce push/pull size
 - Using multi-stage builds to separate build-time and runtime dependencies
 
-## Getting Started
 
-If you wish to run the tutorial, you can use the following command after installing Docker Desktop:
+# Part 7: Multi-Container apps  
 
-```bash
-docker run -d -p 80:80 docker/getting-started
+## Container networking  
+Remember that containers, by default, run in isolation and don't know anything about other processes or containers on the same machine. So, how do we allow one container to talk to another? The answer is **networking**. Now, you don't have to be a network engineer. Simply remember this rule...  
+> <span style="color: #147ac8"> Note </span>  
+If two containers are on the same network, the can talk to each other. If they aren't, the can't
+
+## Start MySQL  
+There are two ways to put a container on a network:  
+1.   Assign it at start.  
+2.  Connect an existing container.  
+
+For now, we will create the network first and attach the MySQL container at startup.  
+
+1.  Create the network.  
+```docker
+    docker network create todo-app  
+```  
+2.  Start a MySQL container and attach it to the network. We're also going to define a few environment variables that the database will use to initialize the database (see the "Environment Variables" section in the [MySQL Docker Hub listing](https://hub.docker.com/_/mysql/))  
+
+```docker
+    docker run -d \
+    --network todo-app --network-alias mysql \
+    -v todo-mysql-data:/var/lib/mysql \
+    -e MYSQL_ROOT_PASSWORD=secret \
+    -e MYSQL_DATABASE=todos \
+    mysql:5.7
 ```
 
-Once it has started, you can open your browser to [http://localhost](http://localhost).
+You'll also see we specified the ```--network-alias``` flag. We'll come back to that in just a moment. 
 
-## Development
+> <span style="color: #147ac8"> Tip </span>  
+You'll notice we're using a volume named ```todo-mysql-data``` here and mounting it at ```var/lib/mysql```, which is where MySQL stores its data. However, we never ran a ```docker volume create``` command. Docker recognizes we want to use a named volume and creates one automatically for us.  
 
-This project has a `docker-compose.yml` file, which will start the mkdocs application on your
-local machine and help you see changes instantly.
-
-```bash
-docker-compose up
-```
-
-## Contributing
-
-If you find typos or other issues with the tutorial, feel free to create a PR and suggest fixes!
-
-If you have ideas on how to make the tutorial better or new content, please open an issue first before working on your idea. While we love input, we want to keep the tutorial  scoped to newcomers.
-As such, we may reject ideas for more advanced requests and don't want you to lose any work you might
-have done. So, ask first and we'll gladly hear your thoughts!
