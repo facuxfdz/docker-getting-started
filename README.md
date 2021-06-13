@@ -14,6 +14,9 @@ into depth, it covers the following topics:
 - Using image layer caching to speed up builds and reduce push/pull size
 - Using multi-stage builds to separate build-time and runtime dependencies
 
+# Part references  
+* [Part 7](#Part-7:-Multi-Container-apps)
+* [Part 8](#Part-8:-Use-Docker-Compose)
 
 # Part 7: Multi-Container apps  
 
@@ -23,7 +26,7 @@ into depth, it covers the following topics:
 *   [Connect to MySQL](#Connect-to-MySQL)  
 *   [Run your app with MySQL](#Run-your-app-with-MySQL)  
 *   [Recap](#Recap)  
-
+---  
 
 ## Container networking  
 Remember that containers, by default, run in isolation and don't know anything about other processes or containers on the same machine. So, how do we allow one container to talk to another? The answer is **networking**. Now, you don't have to be a network engineer. Simply remember this rule...  
@@ -187,14 +190,7 @@ In the next section, we'll talk about Docker Compose. With Docker Compose, we ca
 
 
 # Part 8: Use Docker Compose  
-
-[Docker Compose](https://docs.docker.com/compose/) is a tool that was developed to help define and share multi-container applications. With Compose, we can create a YAML file to define the services and with a single command, can sping everything up or tear it all down.  
-
-The *big* advantage of using Compose is you can define your application stack in a file, keep it at the root of your project repo (it's now version controlled), and easily enable someone else to contribute to your project. Someone would only need to clone your repo and start the compose app. In fact, you might see quite a few projects on Github/GitLab doing exactly this now.  
-
-So, how do we get started?  
-
-
+ 
 ## Index  
 *   [Install Docker Compose](#Install-Docker-Compose)  
 *   [Create the Compose file](#Create-the-Compose-file)  
@@ -202,6 +198,13 @@ So, how do we get started?
     *   [Define the MySQL service](#Define-the-MySQL-service)  
 *   [Run the application stack](#Run-the-application-stack)  
 *   [Tear it all down](#Tear-it-all-down)  
+---  
+
+[Docker Compose](https://docs.docker.com/compose/) is a tool that was developed to help define and share multi-container applications. With Compose, we can create a YAML file to define the services and with a single command, can sping everything up or tear it all down.  
+
+The *big* advantage of using Compose is you can define your application stack in a file, keep it at the root of your project repo (it's now version controlled), and easily enable someone else to contribute to your project. Someone would only need to clone your repo and start the compose app. In fact, you might see quite a few projects on Github/GitLab doing exactly this now.  
+
+So, how do we get started? 
 
 ## Install Docker Compose  
 If you installed Docker/Toolbox for either Windows or Mac, you already have Docker Compose!  
