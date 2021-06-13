@@ -30,7 +30,7 @@ There are two ways to put a container on a network:
 For now, we will create the network first and attach the MySQL container at startup.  
 
 1.  Create the network.  
-```docker
+```console
     docker network create todo-app  
 ```  
 2.  Start a MySQL container and attach it to the network. We're also going to define a few environment variables that the database will use to initialize the database (see the "Environment Variables" section in the [MySQL Docker Hub listing](https://hub.docker.com/_/mysql/))  
