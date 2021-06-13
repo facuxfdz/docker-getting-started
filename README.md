@@ -21,7 +21,6 @@ into depth, it covers the following topics:
 *   [Start MySQL](#Start-MySQL)  
 *   [Connect to MySQL](#Connect-to-MySQL)  
 *   [Run your app with MySQL](#Run-your-app-with-MySQL)  
-*   [Recap](#Recap)  
 
 ## Container networking  
 Remember that containers, by default, run in isolation and don't know anything about other processes or containers on the same machine. So, how do we allow one container to talk to another? The answer is **networking**. Now, you don't have to be a network engineer. Simply remember this rule...  
