@@ -447,11 +447,11 @@ When the app is starting up, it actually sits and waits for MySQL to be up and r
 ## Tear it all down  
 When you're ready to tear it all down, simply run ```docker-compose down```. The containers will stop and the network will be removed.  
 
-<blockquote style="color: #ff7f7a !important;background: #0C141E;">
-    <strong>Warning</strong>
-    <p>Removing Volumes</p>
-    <p>By default, named volumes in your compose file are NOT removed when running ```docker-compose down```. If you want to remove the volumes, you will need to add the ```--volumes``` flag.</p>
-</blockquote>  
+> <strong>Warning</strong>
+  Removing Volumes  
+  By default, named volumes in your compose file are NOT removed when running ```docker-compose down```.   
+  If you want to remove the volumes, you will need to add the ```--volumes``` flag.
+  
 Once torn down, you can switch to another project, run ```docker-compose up``` and be ready to contribute to that project! It really doesn't get much simpler than that!  
 
 ## Recap  
